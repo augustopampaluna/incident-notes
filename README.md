@@ -1,6 +1,6 @@
-## incident-notes
+# incident-notes
 
-# An internal API for logging operational incidents.
+## An internal API for logging operational incidents.
 
 
 FastAPI
