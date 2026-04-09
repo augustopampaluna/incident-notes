@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.api.routes.system import router as system_router
 from app.api.routes.incidents import router as incidents_router
+from app.api.routes.system import router as system_router
 
 app = FastAPI(title="Incident Notes API")
 

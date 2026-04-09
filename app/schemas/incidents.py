@@ -1,10 +1,19 @@
+from datetime import datetime
 from typing import Literal
-
-from pydantic import BaseModel
-
+from pydantic import BaseModel, Field
 
 Severity = Literal["low", "medium", "high", "critical"]
 Status = Literal["open", "in_progress", "resolved"]
+
+
+class IncidentNoteCreate(BaseModel):
+    content: str
+
+
+class IncidentNoteResponse(BaseModel):
+    id: str
+    content: str
+    created_at: datetime
 
 
 class IncidentCreate(BaseModel):
@@ -12,7 +21,7 @@ class IncidentCreate(BaseModel):
     description: str | None = None
     service: str
     severity: Severity
-    status: Status
+    status: Status = "open"
 
 
 class IncidentUpdate(BaseModel):
@@ -30,3 +39,6 @@ class IncidentResponse(BaseModel):
     service: str
     severity: Severity
     status: Status
+    created_at: datetime
+    updated_at: datetime
+    notes: list[IncidentNoteResponse] = Field(default_factory=list)
